@@ -13,13 +13,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 request = [
   {
     title: "hey plz help",
-    bodyContents: "man i really need help please pick me up!"
+    bodyContents: "man i really need help please pick me up!",
+    to: "bob"
+  },
+  {
+    title: "hey plz help meeeee",
+    bodyContents: "please be my friend!",
+    to: "Tom"
   }
 ];
 
 //ROOT
-app.get('/', (req, res) => {
-  res.send({ request })
+app.get('/api/requests/', (req, res) => {
+  res.send(request)
 })
 
 
