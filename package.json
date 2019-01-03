@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "reset-db": "dropdb snitch-db; createdb snitch-db; psql -f schema.sql snitch-db; psql -f seed.sql snitch-db; psql snitch-db < node_modules/connect-pg-simple/table.sql",
+    "debug": "node --inspect-brk index.js",
+    "client": "npm start --prefix client",
+    "server": "nodemon index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,6 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9"
   }
 }
