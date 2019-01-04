@@ -1,10 +1,10 @@
 {
   "name": "buyacompliment",
   "version": "1.0.0",
-  "description": "",
+  "description": "fan experince app to facilitate user interaction with intended target.",
   "main": "index.js",
   "scripts": {
-    "reset-db": "dropdb compliment-db; createdb compliment-db; psql -f schema.sql compliment-db; psql -f seed.sql compliment-db; psql compliment-db < node_modules/connect-pg-simple/table.sql",
+    "reset-db": "dropdb compliment-db; createdb compliment-db; psql -f schema.sql compliment-db; psql -f seed.sql compliment-db; psql compliment-db < node_modules/connect-pg-simple/table.sql ",
     "debug": "node --inspect-brk index.js",
     "client": "npm start --prefix client",
     "server": "nodemon index.js",

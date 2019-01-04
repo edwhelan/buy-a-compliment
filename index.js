@@ -15,6 +15,9 @@ const app = express();
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 
+//import models 
+const Requests = require('./models/Requests');
+
 app.use(session({
   store: new pgSession({
     pgPromise: db
@@ -27,7 +30,7 @@ app.use(session({
 }));
 
 // app.use(express.static(path.join(__dirname, 'public'))); // all static files will be served from public folder
-app.use(helmet())
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('combined'));
@@ -39,22 +42,23 @@ app.use((req, res, next) => {
 });
 
 
-request = [
-  {
-    title: "hey plz help",
-    bodyContents: "man i really need help please pick me up!",
-    to: "bob"
-  },
-  {
-    title: "hey plz help meeeee",
-    bodyContents: "please be my friend!",
-    to: "Tom"
-  }
-];
+// request = [
+//   {
+//     title: "hey plz help",
+//     bodyContents: "man i really need help please pick me up!",
+//     to: "bob"
+//   },
+//   {
+//     title: "hey plz help meeeee",
+//     bodyContents: "please be my friend!",
+//     to: "Tom"
+//   }
+// ];
 
-//ROOT
+//API CALL FOR PUBLIC REQUESTS
 app.get('/api/requests/', (req, res) => {
-  res.send(request)
+  Requests.getPublicRequests()
+    .then(r => res.send(r))
 })
 
 
