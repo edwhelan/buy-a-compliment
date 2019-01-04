@@ -7,9 +7,9 @@ const Request = (props) => {
         {props.data.title}
       </div>
       <div className='request-body'>
-        <p>{props.data.bodyContents}</p>
+        <p>{props.data.request_contents}</p>
       </div>
-      <div className='request-recipient'>to:{props.data.to}</div>
+      <div className='request-recipient'>from:{props.data.user_id_from}</div>
     </div>
   )
 }

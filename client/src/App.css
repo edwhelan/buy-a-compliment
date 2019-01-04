@@ -1,9 +1,10 @@
 .request-wrapper{
   display: flex;
+  flex-wrap: wrap;
 }
 
 .request-card {
   margin: 0 10px;
-  width: 25vw;
+  width: 25%;
   outline: 1px solid black;
 }

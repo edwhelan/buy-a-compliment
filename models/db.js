@@ -7,8 +7,6 @@ const pgp = require("pg-promise")({
     }
   }
 });
-console.log(process.env.DB_NAME)
-console.log('hey that was the name')
 const db = pgp({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
