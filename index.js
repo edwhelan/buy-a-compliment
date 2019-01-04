@@ -36,7 +36,7 @@ app.use((req, res, next) => {
   let isLoggedIn = req.session.user ? true : false;
   console.log(isLoggedIn);
   next();
-})
+});
 
 
 request = [
