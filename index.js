@@ -1,14 +1,21 @@
+//ENV VARIABLES
+require('dotenv').config();
+
+
 // import packages
 const bodyParser = require('body-parser');
 const express = require('express');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
 //initialize app
 const app = express();
 
 // app.use(express.static(path.join(__dirname, 'public'))); // all static files will be served from public folder
-
+app.use(helmet())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(morgan('combined'));
 
 request = [
   {
