@@ -84,7 +84,7 @@ app.post(`/api/login`, (req, res) => {
 });
 
 // REGISTER ==================================
-app.post(`/register`, (req, res) => {
+app.post(`/api/register`, (req, res) => {
   Users.addUser(req.body.name, req.body.password, req.body.email)
     .then(user => {
       req.session.user = user;

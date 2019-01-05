@@ -2,7 +2,7 @@ import React from 'react'
 
 const Register = (props) => {
   return (
-    <form action="/register" method="POST">
+    <form action="/api/register" method="POST">
       <label>
         Email address:<br />
         <input type="email" name="email" required />
