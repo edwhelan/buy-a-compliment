@@ -34,8 +34,7 @@ class Users {
   //RETRIEVE
 
   static getUserById(id) {
-    return db.one(
-      `
+    return db.one(`
       select *
       from users
       where id=$1
