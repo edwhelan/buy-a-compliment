@@ -25,7 +25,7 @@ class Users {
       (name, email, password, is_super)
       values
       ($1, $2, $3, false)
-      return id`, [name, hash, email]
+      returning id`, [name, email, hash]
     ).then(data => {
       const u = new Users(data.id, name, email)
       return u
@@ -67,3 +67,5 @@ class Users {
   }
 
 }
+
+module.exports = Users

@@ -10,7 +10,7 @@ const Register = (props) => {
       <br />
       <label>
         Display name:<br />
-        <input type="text" name="displayName" required />
+        <input type="text" name="name" required />
       </label>
       <br />
       <label>
