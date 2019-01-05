@@ -32,7 +32,6 @@ class Users {
     })
   }
   //RETRIEVE
-
   static getUserById(id) {
     return db.one(`
       select *
@@ -45,11 +44,24 @@ class Users {
     })
   }
 
+  static getUserByEmail(email) {
+    return db.one(`
+    select *
+    from users
+    where email
+    ilike '$1:raw'
+    `, [email])
+      .then(result => {
+        const u = new Users(result.id, result.name, result.email, result.password)
+        return u;
+      })
+  }
+
   //UPDATE
 
   //DELETE
 
-  //MISC
+  //MISC 
   checkPassword(password) {
     return bcrypt.compareSync(password, this.passHash);
   }

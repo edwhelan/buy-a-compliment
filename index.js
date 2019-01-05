@@ -15,8 +15,10 @@ const app = express();
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 
-//import models 
+//require models 
 const Requests = require('./models/Requests');
+const Users = require('./models/Users');
+const Replies = require('./models/Replies');
 
 app.use(session({
   store: new pgSession({
@@ -41,27 +43,61 @@ app.use((req, res, next) => {
   next();
 });
 
-
-// request = [
-//   {
-//     title: "hey plz help",
-//     bodyContents: "man i really need help please pick me up!",
-//     to: "bob"
-//   },
-//   {
-//     title: "hey plz help meeeee",
-//     bodyContents: "please be my friend!",
-//     to: "Tom"
-//   }
-// ];
-
-//API CALL FOR PUBLIC REQUESTS
+// +++++++++++++++++++ ROUTES +++++++++++++++++
+// ===========================================
+//API CALL FOR PUBLIC REQUESTS ====================================
 app.get('/api/requests/', (req, res) => {
   Requests.getPublicRequests()
     .then(r => res.send(r))
 })
 
+//DETECT IF USER IS LOGGED IN ===================
+app.get(`/api/loggedin`, (req, res) => {
+  console.log(req.session.user)
+  if (req.session.user) {
+    return res.send(req.session.user)
+  } else {
+    console.log('not logged in')
+  }
+})
 
+//LOGIN =========================================
+app.post(`/api/login`, (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  Users.getUserByEmail(email)
+    .catch(err => {
+      console.log(err);
+    })
+    .then(user => {
+      const didMatch = user.checkPassword(password);
+      if (didMatch) {
+        req.session.user = user;
+        console.log(`you are now loggedin ${user}`)
+        res.redirect(`/`);
+      }
+      else {
+        console.log(`you did not logged in`)
+        res.redirect(`/didnt/work `);
+      }
+    })
+});
+
+// REGISTER ==================================
+app.post(`/register`, (req, res) => {
+  Users.addUser(req.body.name, req.body.password, req.body.email)
+    .then(user => {
+      req.session.user = user;
+      console.log(req.session.user);
+      res.redirect(`/`)
+    })
+});
+
+// LOGOUT ===============================
+app.post(`/logout`, (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+})
 
 app.listen(5000, () => {
   console.log(`Ready...`);
