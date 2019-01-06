@@ -9,6 +9,7 @@ import {
 
 import Requests from './components/Requests'
 import LoginSystem from './components/LoginSystem';
+import Dashboard from './components/Dashboard';
 
 class App extends Component {
   render() {
@@ -16,10 +17,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <LoginSystem />
-          <h1>a hero image with login goes here</h1>
-          <Requests />
-          <Route path='/' exact Component={Requests} />
-          <Route path='/home' exact Component={Requests} />
+          <Route path='/' exact component={Requests} />
+          <Route path='/dashboard' exact component={Dashboard} />
         </div>
       </Router>
     );

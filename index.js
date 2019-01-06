@@ -73,12 +73,11 @@ app.post(`/api/login`, (req, res) => {
       const didMatch = user.checkPassword(password);
       if (didMatch) {
         req.session.user = user;
-        console.log(`you are now loggedin ${user}`)
-        res.redirect(`/`);
+        res.redirect(`/dashboard`);
       }
       else {
         console.log(`you did not logged in`)
-        res.redirect(`/didnt/work `);
+        res.redirect(`/`);
       }
     })
 });

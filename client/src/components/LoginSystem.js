@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 import Login from './Login';
 import Logout from './Logout';
@@ -52,6 +53,8 @@ class LoginSystem extends Component {
       <>
         <ul className='login-system-ul'>
           {this.state.loggedIn ? <li className='nav-logout'><Logout /></li> : <><li><button onClick={this._isClickedLogin}>Login</button></li><li>{this.state.loginOpen ? <Login /> : <></>}</li><li><button onClick={this._isClickedRegister}>Register</button></li><li>{this.state.registerOpen ? <Register /> : <></>}</li></>}
+          {this.state.loggedIn ? <li> <Link to='/dashboard' >Dashboard </Link></li> : <></>}
+          {this.state.loggedIn ? <li> <Link to='/' >Home </Link></li> : <></>}
         </ul>
       </>
     )
