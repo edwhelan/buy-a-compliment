@@ -110,6 +110,15 @@ app.get(`/api/userRequests`, protectRoute, (req, res) => {
     .then(r => res.send(r))
 })
 
+//POST for USER TO MAKE REQUESTS =============
+app.post(`/api/userRequests`, protectRoute, (req, res) => {
+  // Requests.addRequest(USER_ID_FROM, title, REQUEST_contents, USER_ID_TO, is_private)
+  Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private)
+    .then(r => {
+      res.redirect(`/dashboard`);
+    })
+})
+
 // LOGOUT ===============================
 app.post(`/logout`, (req, res) => {
   req.session.destroy();

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import Request from './Request';
+import RequestsForm from './RequestsForm'
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -8,18 +11,35 @@ class Dashboard extends Component {
       list: []
     }
   }
+  async componentDidMount() {
+    await fetch('/api/userRequests/')
+      .catch(err => console.log(err))
+      .then(r => {
+        return (r.json())
+      })
+      .then(dataSource => {
+        this.setState({
+          list: [...dataSource, ...this.state.list]
+        })
+      })
+  }
+
   render(props) {
     return (
       <>
         <div className='requests-form'>
           requests form will go here
-      </div>
+          <RequestsForm />
+        </div>
 
-        <div className='requests-already-made'>
-          ...load requests here
+        <div className='request-wrapper'>
+          {this.state.list.map(request => {
+            return <Request data={request} />
+          })
+          }
 
 
-      </div>
+        </div>
       </>
     )
   }
