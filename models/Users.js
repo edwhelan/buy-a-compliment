@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 class Users {
   constructor(id, name, password, email, is_super) {
-    this.is = id,
+    this.id = id,
       this.name = name,
       this.password = password,
       this.email = email,

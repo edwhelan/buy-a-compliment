@@ -43,6 +43,17 @@ app.use((req, res, next) => {
   next();
 });
 
+//PROTECT ROUTE =======================
+function protectRoute(req, res, next) {
+  let isLoggedIn = req.session.user ? true : false;
+  if (isLoggedIn) {
+    next();
+  }
+  else {
+    res.redirect('/');
+  }
+}
+
 // +++++++++++++++++++ ROUTES +++++++++++++++++
 // ===========================================
 //API CALL FOR PUBLIC REQUESTS ====================================
@@ -50,6 +61,8 @@ app.get('/api/requests/', (req, res) => {
   Requests.getPublicRequests()
     .then(r => res.send(r))
 })
+
+
 
 //DETECT IF USER IS LOGGED IN ===================
 app.get(`/api/loggedin`, (req, res) => {
@@ -87,10 +100,15 @@ app.post(`/api/register`, (req, res) => {
   Users.addUser(req.body.name, req.body.password, req.body.email)
     .then(user => {
       req.session.user = user;
-      console.log(req.session.user);
       res.redirect(`/`)
     })
 });
+
+// API CALL FOR REQUESTS OF LOGGED IN USER ============
+app.get(`/api/userRequests`, protectRoute, (req, res) => {
+  Requests.getRequestsByUserId(req.session.user.id)
+    .then(r => res.send(r))
+})
 
 // LOGOUT ===============================
 app.post(`/logout`, (req, res) => {

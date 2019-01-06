@@ -40,6 +40,17 @@ class Requests {
       })
   }
 
+  static getRequestsByUserId(id) {
+    return db.any(`
+    select *
+    from REQUESTS
+    where USER_ID_FROM=$1
+    `, [id]
+    ).then(r => {
+      return r
+    })
+  }
+
   // UPDATE ===============================================
   // DELETE ===============================================
 
