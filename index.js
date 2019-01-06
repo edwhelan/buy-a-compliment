@@ -65,9 +65,6 @@ app.get(`/api/loggedin`, (req, res) => {
 app.post(`/api/login`, (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  console.log(email)
-  console.log(password)
-  console.log('your stuff here')
   Users.getUserByEmail(email)
     .catch(err => {
       console.log(err);

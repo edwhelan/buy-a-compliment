@@ -52,7 +52,7 @@ class Users {
     ilike '$1:raw'
     `, [email])
       .then(result => {
-        const u = new Users(result.id, result.name, result.email, result.password)
+        const u = new Users(result.id, result.name, result.password, result.email, result.is_super)
         return u;
       })
   }
@@ -62,8 +62,9 @@ class Users {
   //DELETE
 
   //MISC 
+  // compare password method to call on instances of USERS
   checkPassword(password) {
-    return bcrypt.compareSync(password, this.passHash);
+    return bcrypt.compareSync(password, this.password);
   }
 
 }
