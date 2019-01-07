@@ -14,6 +14,7 @@ const morgan = require('morgan');
 const app = express();
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
+const stripe = require('stripe')(`${process.env.STRIPE_SK}`)
 
 //require models 
 const Requests = require('./models/Requests');
@@ -36,6 +37,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('combined'));
+app.use(bodyParser.text());
 
 app.use((req, res, next) => {
   let isLoggedIn = req.session.user ? true : false;
@@ -54,14 +56,49 @@ function protectRoute(req, res, next) {
   }
 }
 
-// +++++++++++++++++++ ROUTES +++++++++++++++++
+
+// +++++++++++++++++++ API ROUTES +++++++++++++++++
 // ===========================================
+// PAYMENT ROUTE
+app.post("/charge", async (req, res) => {
+  try {
+    let { status } = await stripe.charges.create({
+      amount: 100,
+      currency: "usd",
+      description: "A charge for a ",
+      source: req.body
+    });
+    console.log(` here is your current status ===== ${status}`)
+    res.json({ status });
+  } catch (err) {
+    res.status(500).end();
+  }
+});
+// app.post(`/payment`, (req, res) => {
+//   let amount = 1;
+//   stripe.customers.create({
+//     email: req.body.stripeEmaiil,
+//     source: req.body.stripeToken
+//   })
+//     .then(customer =>
+//       stripe.charges.create({
+//         amount,
+//         description: 'sample charge',
+//         currency: 'usd',
+//         customer: customer.id
+//       }))
+//     .then(charge => console.log(charge))
+// })
+
+
 //API CALL FOR PUBLIC REQUESTS ====================================
 app.get('/api/requests/', (req, res) => {
   Requests.getPublicRequests()
-    .then(r => res.send(r))
+    // .then(r => res.send(r))
+    .then(r => {
+      return res.send(r)
+    })
 })
-
 
 
 //DETECT IF USER IS LOGGED IN ===================

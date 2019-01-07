@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import Request from './Request';
-import RequestsForm from './RequestsForm'
+import RequestsForm from './RequestsForm';
+import { Elements, StripeProvider } from 'react-stripe-elements';
+import CheckoutForm from './CheckoutForm';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -27,6 +29,13 @@ class Dashboard extends Component {
   render(props) {
     return (
       <>
+        <StripeProvider apiKey="pk_test_tYRNrX4cgaDufHFLDWagpMUG">
+          <div className="example">
+            <Elements>
+              <CheckoutForm />
+            </Elements>
+          </div>
+        </StripeProvider>
         <div className='requests-form'>
           requests form will go here
           <RequestsForm />
