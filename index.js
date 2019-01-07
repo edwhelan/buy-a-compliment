@@ -68,27 +68,19 @@ app.post("/charge", async (req, res) => {
       description: "A charge for a ",
       source: req.body
     });
-    console.log(` here is your current status ===== ${status}`)
+    console.log('==================================')
+    if (status === 'succeeded') {
+      console.log(` here is your current status ===== ${status}`)
+      Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private)
+        .then(r => {
+          res.redirect(`/dashboard`);
+        })
+    }
     res.json({ status });
   } catch (err) {
     res.status(500).end();
   }
 });
-// app.post(`/payment`, (req, res) => {
-//   let amount = 1;
-//   stripe.customers.create({
-//     email: req.body.stripeEmaiil,
-//     source: req.body.stripeToken
-//   })
-//     .then(customer =>
-//       stripe.charges.create({
-//         amount,
-//         description: 'sample charge',
-//         currency: 'usd',
-//         customer: customer.id
-//       }))
-//     .then(charge => console.log(charge))
-// })
 
 
 //API CALL FOR PUBLIC REQUESTS ====================================

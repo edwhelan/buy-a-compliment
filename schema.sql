@@ -14,7 +14,8 @@ USER_ID_FROM integer references USERS (id),
 title varchar (200) not null,
 REQUEST_contents varchar (800),
 USER_ID_TO integer references USERS (id),
-is_private boolean
+is_private boolean,
+stripe_token varchar (200) not null
 );
 
 --replies super users can make. replies have a body(reoly) and reference user from, user to,

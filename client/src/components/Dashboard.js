@@ -38,7 +38,7 @@ class Dashboard extends Component {
         </StripeProvider>
         <div className='requests-form'>
           requests form will go here
-          <RequestsForm />
+          {/* <RequestsForm /> */}
         </div>
 
         <div className='request-wrapper'>
