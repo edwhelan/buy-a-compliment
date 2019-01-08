@@ -62,7 +62,7 @@ class CheckoutForm extends Component {
         <textarea name="text_body" value={this.state.body_contents} onChange={this._onChangeBody} placeholder='I have been having a hard time recently...' required />
         </label> <br />
         <label>Is this private?
-          <select name="is_private" value={this.state.is_private} onChange={this._onChangePrivate}>
+          <select name="is_private" onChange={this._onChangePrivate}>
             <option value="" selected disabled hidden>Choose here</option>
             <option value='notPrivate'>Not Private</option>
             <option value='private'>Private</option>

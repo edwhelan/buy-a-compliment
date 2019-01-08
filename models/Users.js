@@ -22,12 +22,12 @@ class Users {
     const hash = bcrypt.hashSync(password, salt);
     return db.one(
       `insert into users
-      (name, email, password, is_super)
+      (name, password, email, is_super)
       values
       ($1, $2, $3, false)
-      returning id`, [name, email, hash]
+      returning id`, [name, hash, email]
     ).then(data => {
-      const u = new Users(data.id, name, email)
+      const u = new Users(data.id, name, hash, email)
       return u
     })
   }

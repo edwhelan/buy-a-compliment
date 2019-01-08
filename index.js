@@ -66,6 +66,7 @@ app.post("/charge", async (req, res) => {
       amount: 100,
       currency: "usd",
       description: "A charge for Fan Experience Buy a Compliment",
+      receipt_email: `${req.session.user.email}`,
       source: req.body
     });
     console.log('==================================')
@@ -124,7 +125,7 @@ app.post(`/api/register`, (req, res) => {
   Users.addUser(req.body.name, req.body.password, req.body.email)
     .then(user => {
       req.session.user = user;
-      res.redirect(`/`)
+      res.redirect(`/dashboard`)
     })
 });
 
