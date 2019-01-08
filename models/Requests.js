@@ -66,6 +66,18 @@ class Requests {
   }
 
   // UPDATE ===============================================
+  static updateStatus(req_id) {
+    return db.any(`
+    update REQUESTS
+    set id=$1
+    where has_responded = true
+    `, [req_id])
+      .then(
+        r => {
+          return r
+        }
+      )
+  }
   // DELETE ===============================================
 
 };

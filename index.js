@@ -150,6 +150,25 @@ app.get(`/api/requestsToUser`, (req, res) => {
     .then(r => res.send(r))
 })
 
+// POST for SUPERUSER to respond to requests
+//POST TO REPLY DB
+//UPDATE has_responded col of request
+app.post(`/api/submitReply`, (req, res) => {
+  const req_id = req.body.REQUESTS_ID
+  Replies.makeNewReply(req.session.user.id, req.body.REQUESTS_ID, req.body.reply)
+    .then(data => {
+      console.log(`==============++++===++=++====`)
+      console.log(data)
+      Requests.updateStatus(req_id)
+        .then(v => {
+          res.redirect('/dashboard')
+
+        })
+    })
+})
+
+
+
 // LOGOUT ===============================
 app.post(`/logout`, (req, res) => {
   req.session.destroy();

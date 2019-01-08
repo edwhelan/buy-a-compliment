@@ -9,6 +9,21 @@ class Replies {
   }
 
   // CREATE
+  static makeNewReply(USER_ID_FROM, REQUESTS_ID, reply) {
+    return db.one(`
+    insert into REPLIES
+    (USER_ID_FROM, REQUESTS_ID, reply)
+    values
+    ($1, $2, $3)
+    returning id
+    `, [USER_ID_FROM, REQUESTS_ID, reply])
+      .then(data => {
+        const u = new Replies(data.id, USER_ID_FROM, REQUESTS_ID, reply)
+        return u
+      })
+
+  }
+
   // RETREIVE
   // UPDATE
   // DELETE

@@ -49,9 +49,7 @@ class SuperUser extends Component {
                 return (<option value={item.id}>{item.title}</option>)
               })}
             </select>
-            {this.state.list.map(box => {
-
-            })}</div>
+          </div>
         </div>
         <div>here are your current pending requests to reply to</div>
         <div className='replies request-wrapper'>
@@ -77,6 +75,23 @@ class SuperUser extends Component {
       replyBody: event.target.value
     })
   }
+  _onSubmit = (event) => {
+    fetch('/api/submitReply', {
+      method: 'POST',
+      body: JSON.stringify({
+        // (USER_ID_FROM, REQUESTS_ID, reply)
+        REQUESTS_ID: this.state.requestIdToReplyTo,
+        reply: this.state.replyBody,
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+      .then(r => {
+        console.log(`IT WORKSSSSSSS`)
+      })
+  }
+
 }
 
 export default SuperUser;
