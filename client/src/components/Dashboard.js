@@ -57,6 +57,9 @@ class Dashboard extends Component {
   render(props) {
     return (
       <>
+        <div className='requests-form'>
+          {this.state.isSuper && <SuperUser />}
+        </div>
         <StripeProvider apiKey="pk_test_tYRNrX4cgaDufHFLDWagpMUG">
           <div className="example">
             <Elements>
@@ -64,11 +67,6 @@ class Dashboard extends Component {
             </Elements>
           </div>
         </StripeProvider>
-        <div className='requests-form'>
-          requests form will go here
-          {/* <RequestsForm /> */}
-        </div>
-        {this.state.isSuper && <SuperUser />}
         <div className='request-wrapper'>
           {this.state.list.map(request => {
             return <Request data={request} />

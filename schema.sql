@@ -15,7 +15,8 @@ title varchar (200) not null,
 REQUEST_contents varchar (800),
 USER_ID_TO integer references USERS (id),
 is_private boolean,
-stripe_token varchar (200) not null
+stripe_token varchar (200) not null,
+has_responded boolean
 );
 
 --replies super users can make. replies have a body(reoly) and reference user from, user to,

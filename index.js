@@ -137,10 +137,17 @@ app.get(`/api/userRequests`, protectRoute, (req, res) => {
 
 //POST for USER TO MAKE REQUESTS =============
 app.post(`/api/userRequests`, protectRoute, (req, res) => {
-  Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private, req.body.stripe_token)
+  Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private, req.body.stripe_token, false)
     .then(r => {
       res.redirect(`/dashboard`);
     })
+})
+
+// GET ALL REQUESTS MADE TO LOGGED IN ID 
+// THAT HAVENT BEEN RESPONDED TO
+app.get(`/api/requestsToUser`, (req, res) => {
+  Requests.getRequestsMadeToUser(req.session.user.id)
+    .then(r => res.send(r))
 })
 
 // LOGOUT ===============================
