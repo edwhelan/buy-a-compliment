@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 import Request from './Request';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import CheckoutForm from './CheckoutForm';
+import SuperUser from './SuperUser';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isUserLoggedIn: false,
+      displayname: '',
+      isSuper: false,
+      loggedIn: false,
       list: []
     }
   }
@@ -22,6 +25,32 @@ class Dashboard extends Component {
         this.setState({
           list: [...dataSource, ...this.state.list]
         })
+        return dataSource
+      })
+      .then(z => {
+        fetch('/api/loggedin')
+          .catch(err => {
+            console.log(err)
+          })
+          .then(v => {
+            return (v.json());
+          })
+          .then(data => {
+            if (data) {
+              this.setState({
+                displayname: data.name,
+                loggedIn: true
+              })
+            } else {
+              console.log('move along');
+            }
+            if (data.is_super) {
+              console.log(`YOU AHHHHH SUPPPPAH`)
+              this.setState({
+                isSuper: true
+              })
+            }
+          })
       })
   }
 
@@ -39,7 +68,7 @@ class Dashboard extends Component {
           requests form will go here
           {/* <RequestsForm /> */}
         </div>
-
+        {this.state.isSuper && <SuperUser />}
         <div className='request-wrapper'>
           {this.state.list.map(request => {
             return <Request data={request} />

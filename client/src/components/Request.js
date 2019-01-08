@@ -2,7 +2,7 @@ import React from 'react';
 
 const Request = (props) => {
   return (
-    <div className='request-card'>
+    <div key={props.id} className='request-card'>
       <div className='request-title'>
         {props.data.title}
       </div>
