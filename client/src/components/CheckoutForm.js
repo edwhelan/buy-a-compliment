@@ -16,17 +16,20 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     // User clicked submit
+    // send to stripe route for payment
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     let response = await fetch("/charge", {
       method: "POST",
       headers: { "Content-Type": "text/plain" },
       body: token.id
     });
-    // await console.log(`============= this is your id = ${response}`)
+    // IF RESPONSE IS GOOD 
+    // set state to completed
     if (response.ok) {
-      console.log(token.id)
-      this.setState({ complete: true, stripe_token: token.id });
+      this.setState({ complete: true });
     }
+    // send post request with form information to be written into the DB
+    // with stripe token as a receipt_id for backend db
     if (response.ok) {
       fetch('/api/userRequests', {
         method: 'POST',
@@ -49,7 +52,6 @@ class CheckoutForm extends Component {
   render() {
     if (this.state.complete) return <h1>Thank you for your purchase</h1>
     return (
-
       <div className="checkout">
         <label>
           Title:
@@ -67,12 +69,14 @@ class CheckoutForm extends Component {
           </select>
         </label>
         <br />
+        {/* this area will show the terms to agree to and the $1 purchase ammount */}
         <p>Would you like to complete the purchase?</p>
         <CardElement />
         <button onClick={this.submit}>Send</button>
       </div>
     );
   }
+  //handler for changing the IS_PRIVATE field/state
   _onChangePrivate = (e) => {
     if (e.target.value === 'notPrivate') {
       this.setState({
@@ -84,12 +88,13 @@ class CheckoutForm extends Component {
       })
     }
   }
-
+  //handler for changing TITLE field/state
   _onChangeTitle = (event) => {
     this.setState({
       title: event.target.value
     })
   }
+  //handler for changing BODY_CONTENTS field/state
   _onChangeBody = (e) => {
     this.setState({
       body_contents: e.target.value

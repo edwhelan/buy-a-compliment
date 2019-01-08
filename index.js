@@ -65,12 +65,11 @@ app.post("/charge", async (req, res) => {
     let { status } = await stripe.charges.create({
       amount: 100,
       currency: "usd",
-      description: "A charge for a ",
+      description: "A charge for Fan Experience Buy a Compliment",
       source: req.body
     });
     console.log('==================================')
     if (status === 'succeeded') {
-      console.log(` here is your current status ===== ${status}`)
       res.send(req.body)
     }
     res.json({ status });
@@ -83,7 +82,6 @@ app.post("/charge", async (req, res) => {
 //API CALL FOR PUBLIC REQUESTS ====================================
 app.get('/api/requests/', (req, res) => {
   Requests.getPublicRequests()
-    // .then(r => res.send(r))
     .then(r => {
       return res.send(r)
     })
@@ -138,7 +136,6 @@ app.get(`/api/userRequests`, protectRoute, (req, res) => {
 
 //POST for USER TO MAKE REQUESTS =============
 app.post(`/api/userRequests`, protectRoute, (req, res) => {
-  // Requests.addRequest(USER_ID_FROM, title, REQUEST_contents, USER_ID_TO, is_private)
   Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private, req.body.stripe_token)
     .then(r => {
       res.redirect(`/dashboard`);

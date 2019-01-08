@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Request from './Request';
-import RequestsForm from './RequestsForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import CheckoutForm from './CheckoutForm';
 
