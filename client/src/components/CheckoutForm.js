@@ -8,6 +8,7 @@ class CheckoutForm extends Component {
       title: '',
       body_contents: '',
       is_private: false,
+      stripe_token: ''
     }
     this.state = { complete: false };
     this.submit = this.submit.bind(this);
@@ -21,20 +22,25 @@ class CheckoutForm extends Component {
       headers: { "Content-Type": "text/plain" },
       body: token.id
     });
-
-    if (response.ok) this.setState({ complete: true });
+    // await console.log(`============= this is your id = ${response}`)
+    if (response.ok) {
+      console.log(token.id)
+      this.setState({ complete: true, stripe_token: token.id });
+    }
     if (response.ok) {
       fetch('/api/userRequests', {
         method: 'POST',
         body: JSON.stringify({
           title: this.state.title,
-          body_contents: this.state.body_contents,
+          text_body: this.state.body_contents,
           is_private: this.state.is_private,
+          stripe_token: token.id
         }),
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
         }
       })
+        .then(j => window.location.reload())
         .then(res => res.json())
         .then(r => console.log(r))
     }
@@ -53,10 +59,14 @@ class CheckoutForm extends Component {
           Body:
         <textarea name="text_body" value={this.state.body_contents} onChange={this._onChangeBody} placeholder='I have been having a hard time recently...' required />
         </label> <br />
-        <select name="is_private" value={this.state.is_private} onChange={this._onChangePrivate}>
-          <option value="false">Not Private</option>
-          <option value="true">Private</option>
-        </select> <br />
+        <label>Is this private?
+          <select name="is_private" value={this.state.is_private} onChange={this._onChangePrivate}>
+            <option value="" selected disabled hidden>Choose here</option>
+            <option value='notPrivate'>Not Private</option>
+            <option value='private'>Private</option>
+          </select>
+        </label>
+        <br />
         <p>Would you like to complete the purchase?</p>
         <CardElement />
         <button onClick={this.submit}>Send</button>
@@ -64,10 +74,17 @@ class CheckoutForm extends Component {
     );
   }
   _onChangePrivate = (e) => {
-    this.setState({
-      is_private: e.target.value
-    })
+    if (e.target.value === 'notPrivate') {
+      this.setState({
+        is_private: false
+      })
+    } else if (e.target.value === 'private') {
+      this.setState({
+        is_private: true
+      })
+    }
   }
+
   _onChangeTitle = (event) => {
     this.setState({
       title: event.target.value

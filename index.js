@@ -71,10 +71,7 @@ app.post("/charge", async (req, res) => {
     console.log('==================================')
     if (status === 'succeeded') {
       console.log(` here is your current status ===== ${status}`)
-      Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private, req.body)
-        .then(r => {
-          res.redirect(`/dashboard`);
-        })
+      res.send(req.body)
     }
     res.json({ status });
   } catch (err) {
@@ -142,7 +139,7 @@ app.get(`/api/userRequests`, protectRoute, (req, res) => {
 //POST for USER TO MAKE REQUESTS =============
 app.post(`/api/userRequests`, protectRoute, (req, res) => {
   // Requests.addRequest(USER_ID_FROM, title, REQUEST_contents, USER_ID_TO, is_private)
-  Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private, req.body)
+  Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private, req.body.stripe_token)
     .then(r => {
       res.redirect(`/dashboard`);
     })
