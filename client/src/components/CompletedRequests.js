@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CompletedRequest from './CompletedRequest';
 
 class CompletedRequests extends Component {
   constructor(props) {
@@ -16,21 +17,15 @@ class CompletedRequests extends Component {
           })
         }))
   }
-  render(props) {
+  render() {
     return (
       <div className='completed-requests'>
         {this.state.list.map(item => {
-          return (
-            <div key={item.id}>
-              <p>{item.sender_name}: {item.title}</p>
-              <p>{item.request_contents}</p>
-              <p>{item.recipient_name}: {item.reply}</p>
-            </div>
-          )
+          return (<CompletedRequest data={item} />)
         })}
       </div>
     )
   }
 }
 
-export default CompletedRequests
+export default CompletedRequests;

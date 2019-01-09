@@ -8,7 +8,8 @@ import {
 } from 'react-router-dom';
 
 import Requests from './components/Requests';
-import CompletedRequests from './components/CompletedRequests';
+import CompletedRequests from './components/CompletedRequests'
+
 import LoginSystem from './components/LoginSystem';
 import Dashboard from './components/Dashboard';
 

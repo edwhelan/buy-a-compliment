@@ -67,6 +67,10 @@ class Dashboard extends Component {
             </Elements>
           </div>
         </StripeProvider>
+        <div>
+          <div>Your Replied Requests</div>
+        </div>
+        <div>Your Sent Requests</div>
         <div className='request-wrapper'>
           {this.state.list.map(request => {
             return <Request data={request} />
