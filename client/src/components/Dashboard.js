@@ -4,6 +4,7 @@ import Request from './Request';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import CheckoutForm from './CheckoutForm';
 import SuperUser from './SuperUser';
+import UsersCompletedRequests from './UsersCompletedRequests';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -69,11 +70,12 @@ class Dashboard extends Component {
         </StripeProvider>
         <div>
           <div>Your Replied Requests</div>
+          <UsersCompletedRequests />
         </div>
         <div>Your Sent Requests</div>
         <div className='request-wrapper'>
           {this.state.list.map(request => {
-            return <Request data={request} />
+            return <Request key={request.id} data={request} />
           })
           }
 

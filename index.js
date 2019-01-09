@@ -135,6 +135,13 @@ app.get(`/api/completedRequests`, (req, res) => {
     .then(r => res.send(r))
 })
 
+
+//API CALL FOR COMPLETED REQUESTS OF LOGGED IN USER
+app.get(`/api/usersCompletedRequests`, (req, res) => {
+  Requests.getUsersCompletedRequests(req.session.user.id)
+    .then(r => res.send(r))
+})
+
 // API CALL FOR REQUESTS OF LOGGED IN USER ============
 app.get(`/api/userRequests`, protectRoute, (req, res) => {
   Requests.getRequestsByUserId(req.session.user.id)

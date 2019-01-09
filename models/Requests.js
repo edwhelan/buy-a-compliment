@@ -92,6 +92,32 @@ class Requests {
       })
   }
 
+  //get all requests that have been responded to for a specific user
+  static getUsersCompletedRequests(id) {
+    return db.any(`
+    select
+    replies.reply,
+    requests.id,
+    requests.title,
+    requests.request_contents,
+    requests.user_id_from,
+    requests.user_id_to,
+    requests.is_private,
+    requests.has_responded,
+    recipient.name recipient_name,
+    sender.name sender_name
+    from replies
+    inner join requests on requests.id = replies.requests_id
+    inner join users as recipient on recipient.id = requests.user_id_to
+    inner join users as sender on sender.id = requests.user_id_from
+    where
+    requests.has_responded=true and sender.id =$1
+    `, [id])
+      .then(r => {
+        return r
+      })
+  }
+
   // UPDATE ===============================================
   //change responded status to true for specific id
   static updateStatus(req_id) {
