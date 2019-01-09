@@ -28,38 +28,77 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
+    // makePayment() {
+    var handler = window.StripeCheckout.configure({
+      key: 'pk_test_tYRNrX4cgaDufHFLDWagpMUG',
+      locale: 'auto',
+      image: 'http://www.digitalcrafts.com/sites/all/themes/digitalcrafts/images/digitalcrafts-site-logo.png',
+      token: (token) => {
+        console.log(token);
+        // console.log(this.props.auth.token);
+        var theData = {
+          amount: 1000,
+          stripeToken: process.env.STRIPE_PK,
+          // userToken: this.props.auth.token,
+        }
+        // axios({
+        //   method: 'POST',
+        //   url: `${window.apiHost}/stripe`,
+        //   data: theData
+        // })
+        fetch("/charge", {
+          method: "POST",
+          headers: { "Content-Type": "text/plain" },
+          data: token.id
+        })
+          .then((response) => {
+            console.log(response);
+            if (response.data.msg === 'paymentSuccess') {
+              this.props.history.push('/thankyou')
+            } else {
+              console.log(response.data.msg)
+            }
+          });
+      }
+    });
+    handler.open({
+      name: "Pay Now",
+      description: 'Classic Compliment order',
+      amount: 100 //the total is in pennies
+    })
+    // }
     // User clicked submit
     // send to stripe route for payment
-    let { token } = await this.props.stripe.createToken({ name: "Name" });
-    let response = await fetch("/charge", {
-      method: "POST",
-      headers: { "Content-Type": "text/plain" },
-      body: token.id
-    });
-    // IF RESPONSE IS GOOD 
-    // set state to completed
-    if (response.ok) {
-      this.setState({ complete: true });
-    }
-    // send post request with form information to be written into the DB
-    // with stripe token as a receipt_id for backend db
-    if (response.ok) {
-      fetch('/api/userRequests', {
-        method: 'POST',
-        body: JSON.stringify({
-          title: this.state.title,
-          text_body: this.state.body_contents,
-          is_private: this.state.is_private,
-          stripe_token: token.id,
-          super_user: this.state.selected_super_user
-        }),
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        }
-      })
-        .then(j => window.location.reload())
-        .then(res => res.json())
-    }
+    // let { token } = await this.props.stripe.createToken({ name: "Name" });
+    // let response = await fetch("/charge", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "text/plain" },
+    //   body: token.id
+    // });
+    // // IF RESPONSE IS GOOD 
+    // // set state to completed
+    // if (response.ok) {
+    //   this.setState({ complete: true });
+    // }
+    // // send post request with form information to be written into the DB
+    // // with stripe token as a receipt_id for backend db
+    // if (response.ok) {
+    //   fetch('/api/userRequests', {
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //       title: this.state.title,
+    //       text_body: this.state.body_contents,
+    //       is_private: this.state.is_private,
+    //       stripe_token: token.id,
+    //       super_user: this.state.selected_super_user
+    //     }),
+    //     headers: {
+    //       'Content-Type': 'application/json; charset=utf-8'
+    //     }
+    //   })
+    //     .then(j => window.location.reload())
+    //     .then(res => res.json())
+    // }
   }
 
   render() {
@@ -93,7 +132,7 @@ class CheckoutForm extends Component {
         <br />
         {/* this area will show the terms to agree to and the $1 purchase ammount */}
         <p>Would you like to complete the purchase?</p>
-        <CardElement />
+        {/* <CardElement /> */}
         <button onClick={this.submit}>Send</button>
       </div>
     );
