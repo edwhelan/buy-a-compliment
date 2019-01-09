@@ -7,7 +7,8 @@ import {
   Link
 } from 'react-router-dom';
 
-import Requests from './components/Requests'
+import Requests from './components/Requests';
+import CompletedRequests from './components/CompletedRequests';
 import LoginSystem from './components/LoginSystem';
 import Dashboard from './components/Dashboard';
 
@@ -17,7 +18,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <LoginSystem />
-          <Route path='/' exact component={Requests} />
+          <Route path='/' exact component={CompletedRequests} />
           <Route path='/dashboard' exact component={Dashboard} />
         </div>
       </Router>

@@ -53,6 +53,7 @@ class Requests {
     })
   }
   // load all requests sent to a specific user
+  // that havent been responded to
   static getRequestsMadeToUser(id) {
     return db.any(`
     select *
@@ -63,6 +64,32 @@ class Requests {
     ).then(r => {
       return r
     })
+  }
+
+  // get all requests that have been responded to
+  static getRequestsResponded() {
+    return db.any(`
+    select
+    replies.reply,
+    requests.id,
+    requests.title,
+    requests.request_contents,
+    requests.user_id_from,
+    requests.user_id_to,
+    requests.is_private,
+    requests.has_responded,
+    recipient.name recipient_name,
+    sender.name sender_name
+    from replies
+    inner join requests on requests.id = replies.requests_id
+    inner join users as recipient on recipient.id = requests.user_id_to
+    inner join users as sender on sender.id = requests.user_id_from
+    where
+    requests.has_responded=true and requests.is_private=false
+    `)
+      .then(r => {
+        return r
+      })
   }
 
   // UPDATE ===============================================

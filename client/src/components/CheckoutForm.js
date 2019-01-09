@@ -21,7 +21,6 @@ class CheckoutForm extends Component {
     await fetch('/api/superUsersList')
       .then(r => r.json())
       .then(data => {
-        console.log(data)
         this.setState({
           super_users_list: data
         })
@@ -64,7 +63,6 @@ class CheckoutForm extends Component {
   }
 
   render() {
-    console.log(this.state.super_users_list)
     if (this.state.complete) return <h1>Thank you for your purchase</h1>
     return (
       <div className="checkout">

@@ -129,6 +129,12 @@ app.post(`/api/register`, (req, res) => {
     })
 });
 
+// API CALL FOR REQUESTS THAT HAVE BEEN RESPONDED TO
+app.get(`/api/completedRequests`, (req, res) => {
+  Requests.getRequestsResponded()
+    .then(r => res.send(r))
+})
+
 // API CALL FOR REQUESTS OF LOGGED IN USER ============
 app.get(`/api/userRequests`, protectRoute, (req, res) => {
   Requests.getRequestsByUserId(req.session.user.id)
