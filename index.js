@@ -157,8 +157,6 @@ app.post(`/api/submitReply`, (req, res) => {
   const req_id = req.body.REQUESTS_ID
   Replies.makeNewReply(req.session.user.id, req.body.REQUESTS_ID, req.body.reply)
     .then(data => {
-      console.log(`==============++++===++=++====`)
-      console.log(data)
       Requests.updateStatus(req_id)
         .then(v => {
           res.redirect('/dashboard')

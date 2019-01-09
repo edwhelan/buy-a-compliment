@@ -67,10 +67,10 @@ class Requests {
 
   // UPDATE ===============================================
   static updateStatus(req_id) {
-    return db.any(`
+    return db.one(`
     update REQUESTS
-    set id=$1
-    where has_responded = true
+    set has_responded=true
+    where id=$1
     `, [req_id])
       .then(
         r => {
