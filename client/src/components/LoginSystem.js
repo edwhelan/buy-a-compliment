@@ -36,13 +36,11 @@ class LoginSystem extends Component {
   }
 
   _isClickedLogin = () => {
-    console.log("clicked it")
     this.setState({
       loginOpen: !this.state.loginOpen
     })
   }
   _isClickedRegister = () => {
-    console.log("clicked it")
     this.setState({
       registerOpen: !this.state.registerOpen
     })

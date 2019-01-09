@@ -66,6 +66,7 @@ class Requests {
   }
 
   // UPDATE ===============================================
+  //change responded status to true for specific id
   static updateStatus(req_id) {
     return db.one(`
     update REQUESTS

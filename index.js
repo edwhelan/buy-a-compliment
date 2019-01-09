@@ -137,11 +137,18 @@ app.get(`/api/userRequests`, protectRoute, (req, res) => {
 
 //POST for USER TO MAKE REQUESTS =============
 app.post(`/api/userRequests`, protectRoute, (req, res) => {
-  Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, 2, req.body.is_private, req.body.stripe_token, false)
+  Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, req.body.super_user, req.body.is_private, req.body.stripe_token, false)
     .then(r => {
       res.redirect(`/dashboard`);
     })
 })
+
+//GET A LIST OF ALL SUPER USERS
+app.get(`/api/superUsersList`, (req, res) => {
+  Users.getSuperUsers()
+    .then(r => res.send(r))
+})
+
 
 // GET ALL REQUESTS MADE TO LOGGED IN ID 
 // THAT HAVENT BEEN RESPONDED TO

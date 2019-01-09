@@ -57,6 +57,16 @@ class Users {
       })
   }
 
+  static getSuperUsers() {
+    return db.any(`
+    select id, name
+    from users
+    where is_super=TRUE
+    `).then(r => {
+      return r
+    })
+  }
+
   //UPDATE
 
   //DELETE

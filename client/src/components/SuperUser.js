@@ -35,6 +35,14 @@ class SuperUser extends Component {
       <>
         <div>Reply to specific request
         <form onSubmit={this._onSubmit}>
+            <div>Replying to:
+          <select name="idToReplyTo" onChange={this._onChangeRequestID}>
+                <option value="" selected disabled hidden>Choose here</option>
+                {this.state.list.map(item => {
+                  return (<option value={item.id}>{item.title}</option>)
+                })}
+              </select>
+            </div>
             <label>
               Reply:
               <textarea value={this.state.replyBody} onChange={this._onChangeReply} name="reply_body" form="usrform" required></textarea>
@@ -42,14 +50,6 @@ class SuperUser extends Component {
             <br />
             <input type='submit' />
           </form>
-          <div>Replying to:
-          <select name="idToReplyTo" onChange={this._onChangeRequestID}>
-              <option value="" selected disabled hidden>Choose here</option>
-              {this.state.list.map(item => {
-                return (<option value={item.id}>{item.title}</option>)
-              })}
-            </select>
-          </div>
         </div>
         <div>here are your current pending requests to reply to</div>
         <div className='replies request-wrapper'>

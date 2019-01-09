@@ -8,10 +8,24 @@ class CheckoutForm extends Component {
       title: '',
       body_contents: '',
       is_private: false,
-      stripe_token: ''
+      stripe_token: '',
+      super_users_list: [],
+      selected_super_user: null,
+      complete: false
     }
-    this.state = { complete: false };
     this.submit = this.submit.bind(this);
+  }
+
+  //fetch a list of all super user names to have requests assigned to.
+  async componentDidMount() {
+    await fetch('/api/superUsersList')
+      .then(r => r.json())
+      .then(data => {
+        console.log(data)
+        this.setState({
+          super_users_list: data
+        })
+      })
   }
 
   async submit(ev) {
@@ -37,7 +51,8 @@ class CheckoutForm extends Component {
           title: this.state.title,
           text_body: this.state.body_contents,
           is_private: this.state.is_private,
-          stripe_token: token.id
+          stripe_token: token.id,
+          super_user: this.state.selected_super_user
         }),
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
@@ -45,11 +60,11 @@ class CheckoutForm extends Component {
       })
         .then(j => window.location.reload())
         .then(res => res.json())
-        .then(r => console.log(r))
     }
   }
 
   render() {
+    console.log(this.state.super_users_list)
     if (this.state.complete) return <h1>Thank you for your purchase</h1>
     return (
       <div className="checkout">
@@ -69,6 +84,15 @@ class CheckoutForm extends Component {
           </select>
         </label>
         <br />
+        <label>Who to send to?
+          <select name="super_user" onChange={this._onChangeSuperUser}>
+            <option value="" selected disabled hidden>Choose here</option>
+            {this.state.super_users_list.map(user => {
+              return (<option value={user.id}>{user.name}</option>)
+            })}
+          </select>
+        </label>
+        <br />
         {/* this area will show the terms to agree to and the $1 purchase ammount */}
         <p>Would you like to complete the purchase?</p>
         <CardElement />
@@ -76,6 +100,14 @@ class CheckoutForm extends Component {
       </div>
     );
   }
+
+  // designate which super user to assign request to
+  _onChangeSuperUser = (e) => {
+    this.setState({
+      selected_super_user: e.target.value
+    })
+  }
+
   //handler for changing the IS_PRIVATE field/state
   _onChangePrivate = (e) => {
     if (e.target.value === 'notPrivate') {
@@ -88,6 +120,7 @@ class CheckoutForm extends Component {
       })
     }
   }
+
   //handler for changing TITLE field/state
   _onChangeTitle = (event) => {
     this.setState({
