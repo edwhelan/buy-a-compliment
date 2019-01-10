@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Request from './Request';
-import { Elements, StripeProvider } from 'react-stripe-elements';
 import CheckoutForm from './CheckoutForm';
 import SuperUser from './SuperUser';
 import UsersCompletedRequests from './UsersCompletedRequests';
@@ -61,13 +60,9 @@ class Dashboard extends Component {
         <div className='requests-form'>
           {this.state.isSuper && <SuperUser />}
         </div>
-        <StripeProvider apiKey="pk_test_tYRNrX4cgaDufHFLDWagpMUG">
-          <div className="example">
-            <Elements>
-              <CheckoutForm />
-            </Elements>
-          </div>
-        </StripeProvider>
+        <div className="example">
+          <CheckoutForm />
+        </div>
         <div>
           <div>Your Replied Requests</div>
           <UsersCompletedRequests />

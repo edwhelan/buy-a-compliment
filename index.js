@@ -66,10 +66,9 @@ app.post("/charge", async (req, res) => {
       amount: 100,
       currency: "usd",
       description: "A charge for Fan Experience Buy a Compliment",
-      receipt_email: `${req.session.user.email}`,
-      source: req.body
+      receipt_email: req.body.email,
+      source: req.body.data
     });
-    console.log('==================================')
     if (status === 'succeeded') {
       res.send(req.body)
     }
