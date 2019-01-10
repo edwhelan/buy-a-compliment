@@ -45,7 +45,6 @@ class Dashboard extends Component {
               console.log('move along');
             }
             if (data.is_super) {
-              console.log(`YOU AHHHHH SUPPPPAH`)
               this.setState({
                 isSuper: true
               })
@@ -73,8 +72,6 @@ class Dashboard extends Component {
             return <Request key={request.id} data={request} />
           })
           }
-
-
         </div>
       </>
     )
