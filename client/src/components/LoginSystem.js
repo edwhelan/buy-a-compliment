@@ -37,24 +37,28 @@ class LoginSystem extends Component {
 
   _isClickedLogin = () => {
     this.setState({
-      loginOpen: !this.state.loginOpen
+      loginOpen: !this.state.loginOpen,
+      registerOpen: false
     })
   }
   _isClickedRegister = () => {
     this.setState({
-      registerOpen: !this.state.registerOpen
+      registerOpen: !this.state.registerOpen,
+      loginOpen: false
     })
   }
 
   render() {
     return (
-      <>
+      <div className='login-div'>
         <ul className='login-system-ul'>
-          {this.state.loggedIn ? <li className='nav-logout'><Logout /></li> : <><li><button onClick={this._isClickedLogin}>Login</button></li><li>{this.state.loginOpen ? <Login /> : <></>}</li><li><button onClick={this._isClickedRegister}>Register</button></li><li>{this.state.registerOpen ? <Register /> : <></>}</li></>}
+          {this.state.loggedIn ? <li className='nav-logout'><Logout /></li> : <><li><button onClick={this._isClickedLogin}>Login</button></li><li><button onClick={this._isClickedRegister}>Register</button></li></>}
+          {this.state.loginOpen ? <Login /> : <></>}
+          {this.state.registerOpen ? <Register /> : <></>}
           {this.state.loggedIn ? <li> <Link to='/dashboard' >Dashboard </Link></li> : <></>}
           {this.state.loggedIn ? <li> <Link to='/' >Home </Link></li> : <></>}
         </ul>
-      </>
+      </div>
     )
   }
 }
