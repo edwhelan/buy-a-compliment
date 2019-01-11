@@ -116,12 +116,29 @@ text-align: center;
 .completed-requests{
   display:flex;
   flex-wrap: wrap;
-  /* margin-top: 3em; */
   justify-content: center;
   background-color: #faf8ff;
 }
 .completed-request{
+  padding: .5em;
+  background: linear-gradient(
+    #fff, #fff 50%, #342c3e 50%, #342c3e
+  );
+  background-size: 100% 200%;
   margin: 10px;
   width: 25%;
   outline: 1px solid black;
+  transition: all 0.2s ease;
+}
+
+.completed-request:hover{
+  background-position: 100% 100%;
+  color: #fff;
+}
+
+.blueText{
+  color:#5243bd;
+  font-size: 1.2em;
+  font-weight: 400;
+  text-decoration: underline;
 }
