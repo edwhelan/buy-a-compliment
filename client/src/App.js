@@ -7,9 +7,8 @@ import {
   Link
 } from 'react-router-dom';
 
-import Requests from './components/Requests';
-import CompletedRequests from './components/CompletedRequests'
-
+import CompletedRequests from './components/CompletedRequests';
+import HeroSpacer from './components/HeroSpacer';
 import LoginSystem from './components/LoginSystem';
 import Dashboard from './components/Dashboard';
 
@@ -19,6 +18,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <LoginSystem />
+          <Route path='/' exact component={HeroSpacer} />
           <Route path='/' exact component={CompletedRequests} />
           <Route path='/dashboard' exact component={Dashboard} />
         </div>
