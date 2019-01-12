@@ -55,8 +55,8 @@ class LoginSystem extends Component {
           {this.state.loggedIn ? <li className='nav-logout'><Logout /></li> : <><li><button onClick={this._isClickedLogin}>Login</button></li><li><button onClick={this._isClickedRegister}>Register</button></li></>}
           {this.state.loginOpen ? <Login /> : <></>}
           {this.state.registerOpen ? <Register /> : <></>}
-          {this.state.loggedIn ? <li> <Link to='/dashboard' >Dashboard </Link></li> : <></>}
-          {this.state.loggedIn ? <li> <Link to='/' >Home </Link></li> : <></>}
+          {this.state.loggedIn ? <li> <Link className='navLink' to='/dashboard' >Dashboard </Link></li> : <></>}
+          {this.state.loggedIn ? <li> <Link className='navLink' to='/' >Home </Link></li> : <></>}
         </ul>
       </div>
     )
