@@ -4,10 +4,15 @@ const CompletedRequest = (props) => {
   return (
     <div className='completed-request' key={props.data.id}>
       <span className='blueText'>
-        <p>{props.data.sender_name}: {props.data.title}</p>
+        <p>
+          {props.data.sender_name}: {props.data.title}
+          <i class="fas fa-question questIcon"></i>
+        </p>
       </span>
       <p>{props.data.request_contents}</p>
-      <p>{props.data.recipient_name}: {props.data.reply}</p>
+      <p className='receiveText'><i class="fas fa-check"></i>
+        {props.data.recipient_name}: {props.data.reply}
+      </p>
     </div>
   )
 }
