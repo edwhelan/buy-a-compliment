@@ -82,14 +82,14 @@ class CheckoutForm extends Component {
     return (
       <div className="checkout">
         <label>
-          Title:
+          Title:<br />
           <input value={this.state.title} onChange={this._onChangeTitle} type='text' name='title' placeholder='Ex. This is my story...' required></input>
         </label><br />
-        <label>
-          Body:
-        <textarea name="text_body" value={this.state.body_contents} onChange={this._onChangeBody} placeholder='I have been having a hard time recently...' required />
+        <label className='form-text-area'>
+          Body:<br />
+          <textarea name="text_body" value={this.state.body_contents} onChange={this._onChangeBody} placeholder='I have been having a hard time recently...' required />
         </label> <br />
-        <label>Is this private?
+        <label>Is this private?<br />
           <select name="is_private" onChange={this._onChangePrivate}>
             <option value="" selected disabled hidden>Choose here</option>
             <option value='notPrivate'>Not Private</option>
@@ -97,7 +97,7 @@ class CheckoutForm extends Component {
           </select>
         </label>
         <br />
-        <label>Who to send to?
+        <label>Who to send to?<br />
           <select name="super_user" onChange={this._onChangeSuperUser}>
             <option value="" selected disabled hidden>Choose here</option>
             {this.state.super_users_list.map(user => {
@@ -109,7 +109,7 @@ class CheckoutForm extends Component {
         {/* this area will show the terms to agree to and the $1 purchase ammount */}
         <p>Would you like to complete the purchase?</p>
         {/* <CardElement /> */}
-        <button onClick={this.submit}>Send</button>
+        <button className='buttonStyle' onClick={this.submit}>Send</button>
       </div>
     );
   }
