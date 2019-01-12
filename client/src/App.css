@@ -89,16 +89,44 @@ margin: 0;
   font-weight: 400;
 }
 
+.requests-zone{
+  background: #16111c;
+  text-align: center;
+}
+
+.requests-zone h3{
+  margin-top: 0;
+  padding-top: 1.4em;
+  color: #fff;
+  text-decoration: underline;
+}
+
 .request-wrapper{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  background: #16111c;
+  padding: 3em;
 }
 
 .request-card {
+  margin: 10px;
+  padding: .5em;
+  color: #fff;
   margin: 0 3em;
-  width: 25%;
-  outline: 1px solid black;
+  width: 33%;
+  outline: 1px solid #fff;
+  background: linear-gradient(
+    #342c3e, #342c3e 50%, #fff 50%, #fff
+  );
+  background-size: 100% 200%;
+  transition: all 0.4s ease;
 }
+.request-card:hover{
+  background-position: 100% -100%;
+  color: #342c3e;
+}
+
 .heroImage{
 width: 100%;
 background-image: url(./images/white-waves.png);

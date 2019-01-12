@@ -66,12 +66,14 @@ class Dashboard extends Component {
           <div>Your Replied Requests</div>
           <UsersCompletedRequests />
         </div>
-        <div>Your Sent Requests</div>
-        <div className='request-wrapper'>
-          {this.state.list.map(request => {
-            return <Request key={request.id} data={request} />
-          })
-          }
+        <div className='requests-zone'>
+          <h3 >Your Sent Requests</h3>
+          <div className='request-wrapper'>
+            {this.state.list.map(request => {
+              return <Request key={request.id} data={request} />
+            })
+            }
+          </div>
         </div>
       </>
     )
