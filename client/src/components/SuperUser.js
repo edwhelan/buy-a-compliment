@@ -33,7 +33,7 @@ class SuperUser extends Component {
   render() {
     return (
       <>
-        <div>Reply to specific request
+        <div className='replies-form'>Reply to specific request
         <form onSubmit={this._onSubmit}>
             <div>Replying to:
           <select name="idToReplyTo" onChange={this._onChangeRequestID}>
@@ -48,7 +48,9 @@ class SuperUser extends Component {
               <textarea value={this.state.replyBody} onChange={this._onChangeReply} name="reply_body" form="usrform" required></textarea>
             </label>
             <br />
-            <input type='submit' />
+            <div className='button-div'>
+            <button className='buttonStyle' type='submit' > Send</button>
+            </div>
           </form>
         </div>
         <div>here are your current pending requests to reply to</div>
