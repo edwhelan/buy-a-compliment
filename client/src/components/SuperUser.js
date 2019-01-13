@@ -53,7 +53,7 @@ class SuperUser extends Component {
             </div>
           </form>
         </div>
-        <div>
+        <div className='super-user-requests'>
           <h4>here are your current pending requests to reply to</h4>
         <div className='replies request-wrapper'>
           {
