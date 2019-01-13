@@ -60,17 +60,22 @@ background-image: url("data:image/svg+xml,%3Csvg width='12' height='16' viewBox=
 
 .nav-login, .nav-register{
   margin-top:3em;
+margin-left: 0;
   text-align: center;
   padding:10%;
   width: 80%;
-  height: 80%;
+  height: 60%;
   border: 1px solid #c9c0d1;
   z-index: 1;
   position: absolute;
   text-align: center;
   background-color: #342c3e;
   border-radius: .25em;
-  color: #fff
+  color: #fff;
+}
+
+.nav-login .buttonStyle, .nav-register .buttonStyle {
+  margin-top: .5em;
 }
 
 .nav-login input, .nav-register input{
@@ -235,8 +240,17 @@ margin: 1em 0;
   padding: .25em;
   background-color: #342c3e;
 }
+.checkout button{
+  width: 40%;
+}
 .checkout-terms p:first-of-type{
   text-align: center;
+  text-decoration: underline;
+}
+.replies-form{
+  background-color: #faf8ff;
+}
+.replies-form p:first-child {
   text-decoration: underline;
 }
 
@@ -259,6 +273,9 @@ margin: 1em 0;
 .checkout .form-text-area, .replies-form form textarea{
   height: 5em;
   padding-bottom: .5em;
+}
+.checkout select{
+  margin: .5em;
 }
 
 .replies-form{
@@ -286,16 +303,44 @@ padding: 2em;
 
 .super-user-requests{
   text-align: center;
+  background-color: #16111c;
+}
+.super-user-requests h4{
+  margin:0;
+  padding: .5em;
+  color: #57be8c;
+  text-decoration: underline;
 }
 
 @media only screen and (min-width: 576px) {
-  
+  .nav-login, .nav-register{
+    width: 60%;
+    padding-top: 3em;
+  } 
+
+  .heroImage{
+    padding-left: 7em;
+    padding-right: 7em;
+  }
+  .checkout, .replies-form{
+    padding: 2em 6em;
+  }
+  .completed-request{
+    width: 18em;
+  }
 }
 @media only screen and (min-width: 768px) {
-  
+  .checkout, .replies-form{
+    padding: 2em 10em;
+  }
+.request-card{
+  width: 14em;
+}
 }
 @media only screen and (min-width: 992px) {
-  
+  .checkout, .replies-form{
+    padding: 2em 15em;
+  }
 }
 @media only screen and (min-width: 1200px) {
   

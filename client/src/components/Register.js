@@ -20,7 +20,7 @@ const Register = (props) => {
           <input type="password" name="password" required />
         </label>
         <br />
-        <input type="submit" value="Register" />
+        <input className='buttonStyle' type="submit" value="Register" />
       </form >
     </div>
   )
