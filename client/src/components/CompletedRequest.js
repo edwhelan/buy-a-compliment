@@ -6,7 +6,7 @@ const CompletedRequest = (props) => {
       <span className='blueText'>
         <p>
           {props.data.sender_name}: {props.data.title}
-          <i class="fas fa-question questIcon"></i>
+          <i class="fas fa-paper-plane"></i>
         </p>
       </span>
       <p>{props.data.request_contents}</p>
