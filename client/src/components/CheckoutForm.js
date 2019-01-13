@@ -107,6 +107,10 @@ class CheckoutForm extends Component {
         </label>
         <br />
         {/* this area will show the terms to agree to and the $1 purchase ammount */}
+        <div className='checkout-terms'>
+        <p>Terms</p>
+          <p>For $1.00 you may send a message to one of the listed people to receive feedback on your problem, issue, or just to chat! Click below to checkout with Stripe</p>
+        </div>
         <h4>Would you like to complete the purchase?</h4>
         {/* <CardElement /> */}
         <button className='buttonStyle' onClick={this.submit}>Send</button>

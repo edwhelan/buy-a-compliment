@@ -127,6 +127,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='12' height='16' viewBox=
 .request-card:hover{
   background-position: 100% -100%;
   color: #342c3e;
+  box-shadow: 0 0 30px grey;
 }
 
 .heroImage{
@@ -147,15 +148,18 @@ text-align: center;
 
 .completed-requests-zone{
   text-align: center;
+  background-color: #faf8ff;
+  margin: .5em 0;
 }
 .completed-requests-zone h3{
   text-decoration: underline;
+  margin: 0;
+  padding: .25em;
 }
 .completed-requests{
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #faf8ff;
 }
 .completed-request{
   padding: .5em;
@@ -164,7 +168,7 @@ text-align: center;
   );
   background-size: 100% 200%;
   margin: 10px;
-  width: 25%;
+  width: 12em;
   outline: 1px solid black;
   transition: all 0.4s ease;
 }
@@ -172,6 +176,7 @@ text-align: center;
 .completed-request:hover{
   background-position: 100% 100%;
   color: #fff;
+  box-shadow: 0 0 30px #333;
 }
 
 .blueText{
@@ -220,6 +225,18 @@ text-decoration: none;
   flex-direction: column;
 align-items: center;
 background-color: #faf8ff;
+margin: 1em 0;
+}
+.checkout-terms{
+  color: #57be8c;
+  border: 1px solid #4e3fb4;
+  border-radius: 0.25rem;
+  padding: .25em;
+  background-color: #342c3e;
+}
+.checkout-terms p:first-of-type{
+  text-align: center;
+  text-decoration: underline;
 }
 
 .checkout label, .replies-form form{
