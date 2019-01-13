@@ -62,8 +62,8 @@ class Dashboard extends Component {
         <div className="example">
           <CheckoutForm />
         </div>
-        <div>
-          <div>Your Replied Requests</div>
+        <div className='completed-requests-zone'>
+          <h3>Your Replied Requests</h3>
           <UsersCompletedRequests />
         </div>
         <div className='requests-zone'>

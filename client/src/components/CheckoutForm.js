@@ -107,7 +107,7 @@ class CheckoutForm extends Component {
         </label>
         <br />
         {/* this area will show the terms to agree to and the $1 purchase ammount */}
-        <p>Would you like to complete the purchase?</p>
+        <h4>Would you like to complete the purchase?</h4>
         {/* <CardElement /> */}
         <button className='buttonStyle' onClick={this.submit}>Send</button>
       </div>

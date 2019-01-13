@@ -143,6 +143,12 @@ text-align: center;
   padding: .8em 0;
 }
 
+.completed-requests-zone{
+  text-align: center;
+}
+.completed-requests-zone h3{
+  text-decoration: underline;
+}
 .completed-requests{
   display:flex;
   flex-wrap: wrap;
