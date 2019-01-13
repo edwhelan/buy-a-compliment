@@ -33,7 +33,7 @@ class SuperUser extends Component {
   render() {
     return (
       <>
-        <div className='replies-form'>Reply to specific request
+        <div className='replies-form'>Reply to your requests
         <form onSubmit={this._onSubmit}>
             <div>Replying to:
           <select name="idToReplyTo" onChange={this._onChangeRequestID}>
@@ -53,7 +53,8 @@ class SuperUser extends Component {
             </div>
           </form>
         </div>
-        <div>here are your current pending requests to reply to</div>
+        <div>
+          <h4>here are your current pending requests to reply to</h4>
         <div className='replies request-wrapper'>
           {
             // take data from state and map it into reusable card component.
@@ -62,6 +63,7 @@ class SuperUser extends Component {
             })
           }
         </div>
+          </div>
       </>
     )
   }

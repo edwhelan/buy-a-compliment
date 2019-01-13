@@ -89,7 +89,7 @@ class CheckoutForm extends Component {
           Body:<br />
           <textarea name="text_body" value={this.state.body_contents} onChange={this._onChangeBody} placeholder='I have been having a hard time recently...' required />
         </label> <br />
-        <label>Is this private?<br />
+        <label>Is this private?
           <select name="is_private" onChange={this._onChangePrivate}>
             <option value="" selected disabled hidden>Choose here</option>
             <option value='notPrivate'>Not Private</option>
@@ -97,7 +97,7 @@ class CheckoutForm extends Component {
           </select>
         </label>
         <br />
-        <label>Who to send to?<br />
+        <label>Who to send to?
           <select name="super_user" onChange={this._onChangeSuperUser}>
             <option value="" selected disabled hidden>Choose here</option>
             {this.state.super_users_list.map(user => {
