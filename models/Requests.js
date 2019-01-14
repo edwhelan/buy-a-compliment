@@ -33,10 +33,22 @@ class Requests {
   // get all public requests
   static getPublicRequests() {
     return db.any(`
-  select *
-  from REQUESTS
-  where is_private=false
-  `)
+    select
+    requests.id,
+    requests.title,
+    requests.request_contents,
+    requests.user_id_from,
+    requests.user_id_to,
+    requests.is_private,
+    requests.has_responded,
+    recipient.name recipient_name,
+    sender.name sender_name
+    from requests
+    inner join users as recipient on recipient.id = requests.user_id_to
+    inner join users as sender on sender.id = requests.user_id_from
+    where
+    requests.is_private=false
+    `)
       .then(r => {
         return r
       })
@@ -44,8 +56,18 @@ class Requests {
   // load all requests a user has made
   static getRequestsByUserId(id) {
     return db.any(`
-    select *
-    from REQUESTS
+    select
+    requests.id,
+    requests.title,
+    requests.request_contents,
+    requests.user_id_from,
+    requests.user_id_to,
+    requests.is_private,
+    recipient.name recipient_name,
+    sender.name sender_name
+    from requests
+    inner join users as recipient on recipient.id = requests.user_id_to
+    inner join users as sender on sender.id = requests.user_id_from
     where USER_ID_FROM=$1
     `, [id]
     ).then(r => {
