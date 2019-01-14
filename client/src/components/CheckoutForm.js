@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import plane from '../images/mail.svg'
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class CheckoutForm extends Component {
     let handler = await window.StripeCheckout.configure({
       key: 'pk_test_tYRNrX4cgaDufHFLDWagpMUG',
       locale: 'auto',
-      image: 'http://www.digitalcrafts.com/sites/all/themes/digitalcrafts/images/digitalcrafts-site-logo.png',
+      image: `${plane}`,
       token: (token) => {
         fetch("/charge", {
           method: "POST",

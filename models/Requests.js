@@ -78,8 +78,18 @@ class Requests {
   // that havent been responded to
   static getRequestsMadeToUser(id) {
     return db.any(`
-    select *
-    from REQUESTS
+    select
+    requests.id,
+    requests.title,
+    requests.request_contents,
+    requests.user_id_from,
+    requests.user_id_to,
+    requests.is_private,
+    recipient.name recipient_name,
+    sender.name sender_name
+    from requests
+    inner join users as recipient on recipient.id = requests.user_id_to
+    inner join users as sender on sender.id = requests.user_id_from
     where USER_ID_TO=$1 and 
     has_responded=false
     `, [id]

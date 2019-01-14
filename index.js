@@ -174,6 +174,9 @@ app.get(`/api/requestsToUser`, (req, res) => {
 //UPDATE has_responded col of request
 app.post(`/api/submitReply`, (req, res) => {
   const req_id = req.body.REQUESTS_ID
+  if (req.body.reply.length <= 99){
+    return res.status(400).send({ error: 'Reply Length Not Long enough. Try again' })
+  }
   Replies.makeNewReply(req.session.user.id, req.body.REQUESTS_ID, req.body.reply)
     .then(data => {
       Requests.updateStatus(req_id)

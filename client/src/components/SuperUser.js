@@ -46,7 +46,7 @@ class SuperUser extends Component {
             </div>
             <label>
               Reply:
-              <textarea value={this.state.replyBody} onChange={this._onChangeReply} name="reply_body" form="usrform" required></textarea>
+              <textarea value={this.state.replyBody} minlength='100' placeholder='Must be 100 characters min'onChange={this._onChangeReply} name="reply_body" form="usrform" required></textarea>
             </label>
             <br />
             <div className='button-div'>

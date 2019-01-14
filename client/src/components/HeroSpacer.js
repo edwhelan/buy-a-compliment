@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import mail from '../images/mail.svg';
+import paperPlane from '../images/paper-plane.svg';
+
 class HeroSpacer extends Component {
   constructor(props) {
     super(props);
@@ -11,10 +14,19 @@ class HeroSpacer extends Component {
     return (
       <div className='heroImage'>
         <div className='heroTextWrapper'>
-          <p> Fan-Ex is the leading site in the fan interaction experience</p>
-          <p>Allowing fans to connect to registered members of the community with public or private questions </p>
-          <p>The recipient can then respond to the user</p>
-          <p>All interactions are only $1.00 for a request. </p>
+        <div className='heroTextP'>
+        <div className='heroTextImg'>
+          <p> Buy-a-Compliment.com is a site to connect you to people that care.</p>
+          <img id='mailImg' src={mail}/>
+        </div>
+          <p className='heroTextBlock'>Sign-up to make requests to users that care. You can make your requests public or private. View sample items below!  </p>
+          {/* <p>The recipient can then respond to the user</p> */}
+          <div className='heroTextImg'>
+          <img src={paperPlane}/>
+          <p> Recipients can then rspond to the user and share in the interaction fee! All request interactions are only $1.00</p>
+        </div>
+          <p className='heroTextBlock'>Sign up to become a member of the community now! </p>
+        </div>
         </div>
       </div>
     )
