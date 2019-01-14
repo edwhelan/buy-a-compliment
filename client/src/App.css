@@ -341,6 +341,10 @@ padding: 2em;
   .checkout, .replies-form{
     padding: 2em 15em;
   }
+  .heroImage{
+    padding-left: 10em;
+    padding-right: 10em;
+  }
 }
 @media only screen and (min-width: 1200px) {
   
