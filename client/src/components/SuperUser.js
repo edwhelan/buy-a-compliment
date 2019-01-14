@@ -46,7 +46,7 @@ class SuperUser extends Component {
             </div>
             <label>
               Reply:
-              <textarea value={this.state.replyBody} minlength='100' placeholder='Must be 100 characters min'onChange={this._onChangeReply} name="reply_body" form="usrform" required></textarea>
+              <textarea value={this.state.replyBody} placeholder='Must be 100 characters min'onChange={this._onChangeReply} name="reply_body" form="usrform" required></textarea>
             </label>
             <br />
             <div className='button-div'>
@@ -81,20 +81,25 @@ class SuperUser extends Component {
     })
   }
   _onSubmit = (event) => {
-    fetch('/api/submitReply', {
-      method: 'POST',
-      body: JSON.stringify({
-        // (USER_ID_FROM, REQUESTS_ID, reply)
-        REQUESTS_ID: this.state.requestIdToReplyTo,
-        reply: this.state.replyBody,
-      }),
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      }
-    })
-      .then(r => {
-        console.log(`IT WORKSSSSSSS`)
+    if (this.state.replyBody.length <= 99){
+      alert('Your reply must be 100 characters or more!')
+    } else{
+      fetch('/api/submitReply', {
+        method: 'POST',
+        body: JSON.stringify({
+          // (USER_ID_FROM, REQUESTS_ID, reply)
+          REQUESTS_ID: this.state.requestIdToReplyTo,
+          reply: this.state.replyBody,
+        }),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        }
       })
+        .then(r => {
+          console.log(`IT WORKSSSSSSS`)
+        })
+
+    }
   }
 
 }

@@ -20,8 +20,8 @@ class CompletedRequests extends Component {
   render() {
     return (
       <div className='completed-requests'>
-        {this.state.list.map(item => {
-          return (<CompletedRequest data={item} />)
+        {this.state.list.map((item, index) => {
+          return (<CompletedRequest key={index} data={item} />)
         })}
       </div>
     )

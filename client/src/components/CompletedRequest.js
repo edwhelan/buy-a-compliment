@@ -6,11 +6,11 @@ const CompletedRequest = (props) => {
       <span className='blueText'>
         <p>
           {props.data.sender_name}: {props.data.title}
-          <i class="fas fa-paper-plane"></i>
+          <i className="fas fa-paper-plane"></i>
         </p>
       </span>
       <p>{props.data.request_contents}</p>
-      <p className='receiveText'><i class="fas fa-check"></i>
+      <p className='receiveText'><i className="fas fa-check"></i>
         {props.data.recipient_name}: {props.data.reply}
       </p>
     </div>

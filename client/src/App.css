@@ -134,7 +134,6 @@ margin-left: 0;
   color: #342c3e;
   box-shadow: 0 0 30px grey;
 }
-
 .heroImage{
 width: 100%;
 background-image: url(./images/white-waves.png);
@@ -213,7 +212,7 @@ max-height: 50%;
   font-weight: 400;
   text-decoration: underline;
 }
-.receiveText{
+.receiveText, .request-recipient{
   color: #57be8c;
 }
 
