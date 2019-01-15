@@ -181,6 +181,7 @@ app.post(`/api/submitReply`, (req, res) => {
   }
   Replies.makeNewReply(req.session.user.id, req.body.REQUESTS_ID, req.body.reply)
     .then(data => {
+      res.redirect('/')
       Requests.updateStatus(req_id)
         .then(v => {
           res.redirect('/')
