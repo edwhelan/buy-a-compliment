@@ -82,6 +82,7 @@ class SuperUser extends Component {
   }
   _onSubmit = (event) => {
     if (this.state.replyBody.length <= 99){
+      event.preventDefault()
       alert('Your reply must be 100 characters or more!')
     } else{
       fetch('/api/submitReply', {
