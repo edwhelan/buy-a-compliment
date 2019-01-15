@@ -183,7 +183,7 @@ app.post(`/api/submitReply`, (req, res) => {
     .then(data => {
       Requests.updateStatus(req_id)
         .then(v => {
-          res.redirect('/dashboard')
+          res.redirect('/')
 
         })
     })
