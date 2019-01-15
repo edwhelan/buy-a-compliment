@@ -64,7 +64,6 @@ class CheckoutForm extends Component {
                   'Content-Type': 'application/json; charset=utf-8'
                 }
               })
-                .then(j => window.location.reload())
             }
 
           });
