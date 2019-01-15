@@ -78,7 +78,7 @@ class CheckoutForm extends Component {
   }
 
   render() {
-    if (this.state.complete) return <h1>Thank you for your purchase</h1>
+    if (this.state.complete) return <h1 id='completed-purchase'>Thank you for your purchase</h1>
     return (
       <div className="checkout">
         <label>

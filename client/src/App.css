@@ -333,6 +333,13 @@ padding: 2em;
   text-decoration: underline;
 }
 
+#completed-purchase{
+  background-color: #faf8ff;
+  outline: 1px solid #16111c;
+  padding: 2em;
+text-align: center;
+}
+
 @media only screen and (min-width: 576px) {
   .nav-login, .nav-register{
     width: 60%;
