@@ -16,7 +16,7 @@ const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const stripe = require('stripe')(`${process.env.STRIPE_SK}`)
 
-app.use(express.static(path.join(__dirname, 'public'))); // all static files will be served from public folder
+app.use(express.static('public')); // all static files will be served from public folder
 
 //require models 
 const Requests = require('./models/Requests');
@@ -197,6 +197,6 @@ app.post(`/logout`, (req, res) => {
   res.redirect('/');
 })
 
-app.listen(5000, () => {
+app.listen(5001, () => {
   console.log(`Ready...`);
 });
