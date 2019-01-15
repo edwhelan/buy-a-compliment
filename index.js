@@ -112,7 +112,7 @@ app.post(`/api/login`, (req, res) => {
       const didMatch = user.checkPassword(password);
       if (didMatch) {
         req.session.user = user;
-        res.redirect(`/dashboard`);
+        res.redirect(`/`);
       }
       else {
         console.log(`you did not logged in`)
@@ -126,7 +126,7 @@ app.post(`/api/register`, (req, res) => {
   Users.addUser(req.body.name, req.body.password, req.body.email)
     .then(user => {
       req.session.user = user;
-      res.redirect(`/dashboard`)
+      res.redirect(`/`)
     })
 });
 
@@ -153,7 +153,7 @@ app.get(`/api/userRequests`, protectRoute, (req, res) => {
 app.post(`/api/userRequests`, protectRoute, (req, res) => {
   Requests.addRequest(req.session.user.id, req.body.title, req.body.text_body, req.body.super_user, req.body.is_private, req.body.stripe_token, false)
     .then(r => {
-      res.redirect(`/dashboard`);
+      res.redirect(`/`);
     })
 })
 
