@@ -97,7 +97,7 @@ class SuperUser extends Component {
         }
       })
       .then(r => {
-        window.location.replace('/')
+        return window.location.replace('/')
       })
 
     }

@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e12983e31fb9ee666a85",
+    "revision": "9f96389f340c245bcb7b",
     "url": "/static/css/main.c691c488.chunk.css"
   },
   {
-    "revision": "e12983e31fb9ee666a85",
-    "url": "/static/js/main.e12983e3.chunk.js"
+    "revision": "9f96389f340c245bcb7b",
+    "url": "/static/js/main.9f96389f.chunk.js"
   },
   {
     "revision": "528704f23ca9f477c70e",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/static/media/white-waves.a06a3248.png"
   },
   {
-    "revision": "862d1e6bed88d20272612e6acac29af0",
+    "revision": "b44576e6fdce695045e116a94ba1b4c1",
     "url": "/index.html"
   }
 ];
