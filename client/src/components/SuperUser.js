@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
+import  { Redirect } from 'react-router-dom'
 import Request from './Request';
+import { runInThisContext } from 'vm';
 
 class SuperUser extends Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class SuperUser extends Component {
     this.state = {
       list: [],
       replyBody: '',
-      requestIdToReplyTo: 0
+      requestIdToReplyTo: 0,
+      posted: false,
     }
   }
 
@@ -31,6 +33,7 @@ class SuperUser extends Component {
   //display below
   //each of these should have the ability to be responded to
   render() {
+    if (this.state.posted) return <h1 id='completed-purchase'>Thanks for your submission!</h1>
     return (
       <>
         <div className='replies-form'>
@@ -80,7 +83,7 @@ class SuperUser extends Component {
       replyBody: event.target.value
     })
   }
-  _onSubmit = (event) => {
+_onSubmit = (event) => {
     event.preventDefault()
     if (this.state.replyBody.length <= 99){
       alert('Your reply must be 100 characters or more!')
@@ -95,11 +98,11 @@ class SuperUser extends Component {
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
         }
-      })
-      .then(r => {
-        return window.location.replace('/')
-      })
-
+    })
+    event.preventDefault()
+    this.setState({
+      posted:true
+    })
     }
   }
 

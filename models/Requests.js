@@ -158,11 +158,6 @@ class Requests {
     set has_responded=true
     where id=$1
     `, [req_id])
-      .then(
-        r => {
-          return r
-        }
-      )
   }
   // DELETE ===============================================
 
